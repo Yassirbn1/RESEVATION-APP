@@ -47,8 +47,15 @@ app.use("/api/rooms", roomsRoute);
 
 
 
+
 // Écoute du serveur sur le port 8800
-app.listen(8800, () => {
+const server = app.listen(8800, () => {
   connect();
   console.log("Server is running on port 8800.");
 });
+
+// Gestionnaire d'événement en cas d'erreur lors de l'écoute du port
+server.on('error', (error) => {
+  console.error('Error starting server:', error);
+});
+
